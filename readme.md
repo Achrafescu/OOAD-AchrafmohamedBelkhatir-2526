@@ -1,6 +1,6 @@
 # OO Application Development
 
-- Academiejaar: 2024 2025
+- Academiejaar: 2025 2026
 - Opleiding: Toegepaste Informatica
-- Klasgroep: 3
+- Klasgroep: 5
 - Naam: Achraf mohamed BELKHATIR
