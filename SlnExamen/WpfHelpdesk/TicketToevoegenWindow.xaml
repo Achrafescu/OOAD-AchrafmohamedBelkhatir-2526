@@ -1,0 +1,104 @@
+﻿<Window x:Class="WpfHelpdesk.TicketToevoegenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfHelpdesk"
+        mc:Ignorable="d"
+        Title="TicketToevoegenWindow" Height="460" Width="480"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Formulier -->
+                <RowDefinition Height="Auto"/>
+                <!-- Foutmelding -->
+                <RowDefinition Height="Auto"/>
+                <!-- Knoppen -->
+            </Grid.RowDefinitions>
+
+            <!-- ═══ FORMULIER ═══ -->
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Titel -->
+                <Label Grid.Row="0" Grid.Column="0" Content="Titel *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <TextBox x:Name="txtTitel" Grid.Row="0" Grid.Column="1"
+                     Margin="0,6" Padding="4"/>
+
+                <!-- Voornaam melder -->
+                <Label Grid.Row="1" Grid.Column="0" Content="Voornaam melder *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <TextBox x:Name="txtVoornaam" Grid.Row="1" Grid.Column="1"
+                     Margin="0,6" Padding="4"/>
+
+                <!-- Achternaam melder -->
+                <Label Grid.Row="2" Grid.Column="0" Content="Achternaam melder *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <TextBox x:Name="txtAchternaam" Grid.Row="2" Grid.Column="1"
+                     Margin="0,6" Padding="4"/>
+
+                <!-- Melder ID -->
+                <Label Grid.Row="3" Grid.Column="0" Content="Melder ID *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <TextBox x:Name="txtMelderId" Grid.Row="3" Grid.Column="1"
+                     Margin="0,6" Padding="4"/>
+
+                <!-- Prioriteit -->
+                <Label Grid.Row="4" Grid.Column="0" Content="Prioriteit *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <ComboBox x:Name="cmbPrioriteit" Grid.Row="4" Grid.Column="1"
+                      Margin="0,6">
+                    <ComboBoxItem Content="Laag"/>
+                    <ComboBoxItem Content="Normaal" IsSelected="True"/>
+                    <ComboBoxItem Content="Hoog"/>
+                </ComboBox>
+
+                <!-- Type -->
+                <Label Grid.Row="5" Grid.Column="0" Content="Type *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <ComboBox x:Name="cmbType" Grid.Row="5" Grid.Column="1"
+                      Margin="0,6" SelectionChanged="cmbType_SelectionChanged">
+                    <ComboBoxItem Content="Hardware" IsSelected="True"/>
+                    <ComboBoxItem Content="Software"/>
+                </ComboBox>
+
+                <!-- Toestel / Applicatie -->
+                <Label x:Name="lblToestel" Grid.Row="6" Grid.Column="0"
+                   Content="Toestel *"
+                   VerticalAlignment="Center" Margin="0,6"/>
+                <TextBox x:Name="txtToestel" Grid.Row="6" Grid.Column="1"
+                     Margin="0,6" Padding="4"/>
+            </Grid>
+
+            <!-- ═══ FOUTMELDING ═══ -->
+            <TextBlock x:Name="txtFout" Grid.Row="1"
+                   Foreground="Red" FontWeight="Bold"
+                   TextWrapping="Wrap"
+                   Margin="0,8,0,4"
+                   Visibility="Collapsed"/>
+
+            <!-- ═══ KNOPPEN ═══ -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,8,0,0">
+                <Button Content="Annuleren" Click="btnAnnuleren_Click" Width="100"/>
+                <Button Content="Opslaan"   Click="btnOpslaan_Click"   Width="100"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,146 @@
+﻿<Window x:Class="WpfVcardEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfVcardEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="800" MinWidth="500" MinHeight="450">
+    <Grid>
+        <DockPanel LastChildFill="True">
+
+            <Menu DockPanel.Dock="Top" Height="24">
+                <MenuItem   Header="_vCard" >
+                    <MenuItem x:Name="menuNieuw" Header="_Nieuw" Click="menuNieuw_Click"/> 
+                    <MenuItem x:Name="menuOpen" Header="_Openen..." Click="menuOpen_Click"/>
+                    <MenuItem Header="_Opslaan"/>
+                    <MenuItem x:Name="menuOpslaanAls" Header="_Opslaan als..." Click="menuOpslaanAls_Click"/>
+                    <Separator/>
+                    <MenuItem Header="_Afsluiten"/>
+                </MenuItem>
+                <MenuItem  Header="_Help" >
+                    <MenuItem x:Name="menuOver" Header="_Over..." Click="menuOver_Click"/>
+                </MenuItem>
+            </Menu>
+
+            <StatusBar DockPanel.Dock="Bottom" Height="24">
+                <StatusBarItem >
+                    <TextBlock x:Name="tblCurrentFile" Text="huidige kaart: (geen geopend)"/>
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right" HorizontalContentAlignment="Right">
+                    <TextBlock x:Name="tblPercentage" Text="percentage ingevuld: 0%"/>
+                </StatusBarItem>
+            </StatusBar>
+
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*" MaxWidth="600"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Voornaam -->
+                <Label x:Name="lblVoornaam"
+                       Grid.Column="0" Grid.Row="0"
+                       Content="Voornaam"
+                       VerticalAlignment="Center" Margin="0,5"/>
+                <TextBox x:Name="txtVoornaam"
+                         Grid.Column="1" Grid.Row="0"
+                         Height="30" Margin="0,5"
+                         HorizontalAlignment="Stretch"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- Achternaam -->
+                <Label x:Name="lblAchternaam"
+                       Grid.Column="0" Grid.Row="1"
+                       Content="Achternaam"
+                       VerticalAlignment="Center" Margin="0,5"/>
+                <TextBox x:Name="txtAchternaam"
+                         Grid.Column="1" Grid.Row="1"
+                         Height="30" Margin="0,5"
+                         HorizontalAlignment="Stretch"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- Geboortedatum -->
+                <Label x:Name="lblGeboortedatum"
+                       Grid.Column="0" Grid.Row="3"
+                       Content="Geboortedatum"
+                       VerticalAlignment="Center" Margin="0,5"/>
+                <DatePicker x:Name="dpGeboortedatum"
+                            Grid.Column="1" Grid.Row="3"
+                            Height="30" Margin="0,5"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" Width="180"/>
+
+                <!-- Geslacht -->
+                <Label x:Name="lblGeslacht"
+                       Grid.Column="0" Grid.Row="4"
+                       Content="Geslacht"
+                       VerticalAlignment="Center" Margin="0,5"/>
+                <StackPanel Grid.Column="1" Grid.Row="4"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" Margin="0,5">
+                    <RadioButton x:Name="rdbVrouw"    Content="vrouw"    Margin="0,0,12,0"/>
+                    <RadioButton x:Name="rdbMan"      Content="man"      Margin="0,0,12,0"/>
+                    <RadioButton x:Name="rdbOnbekend" Content="onbekend"/>
+                </StackPanel>
+
+                <!-- Email -->
+                <Label x:Name="lblEmail"
+                       Grid.Column="0" Grid.Row="5"
+                       Content="Privé email"
+                       VerticalAlignment="Center" Margin="0,5"/>
+                <TextBox x:Name="txtEmail"
+                         Grid.Column="1" Grid.Row="5"
+                         Height="30" Margin="0,5"
+                         HorizontalAlignment="Stretch"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- Telefoon -->
+                <Label x:Name="lblTelefoon"
+                       Grid.Column="0" Grid.Row="6"
+                       Content="Privé telefoon"
+                       VerticalAlignment="Center" Margin="0,5"/>
+                <TextBox x:Name="txtTelefoon"
+                         Grid.Column="1" Grid.Row="6"
+                         Height="30" Margin="0,5"
+                         HorizontalAlignment="Stretch"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- Foto -->
+                <Label x:Name="lblFoto"
+                       Grid.Column="0" Grid.Row="7"
+                       Content="Foto"
+                       VerticalAlignment="Top" Margin="0,10"/>
+                <StackPanel Grid.Column="1" Grid.Row="7"
+                            HorizontalAlignment="Right"
+                            Margin="0,10">
+                    <Button x:Name="btnFoto" Content="SELECTEER..."
+                            HorizontalAlignment="Right"
+                            Width="120" Height="32" Click="btnFoto_Click"/>
+                    <TextBlock x:Name="tblFoto" Text="(geen geselecteerd)"
+                               Margin="0,6,0,6"
+                               TextAlignment="Center" Width="180"
+                               HorizontalAlignment="Right"/>
+                    <Border BorderBrush="Gray" BorderThickness="1"
+                            Width="180" Height="180"
+                            HorizontalAlignment="Right">
+                        <Image x:Name="imgFoto" Width="180" Height="180" Stretch="Uniform"/>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

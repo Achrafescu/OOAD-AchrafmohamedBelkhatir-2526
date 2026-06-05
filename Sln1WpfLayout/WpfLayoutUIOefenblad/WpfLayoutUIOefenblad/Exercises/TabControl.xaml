@@ -1,0 +1,54 @@
+﻿<Page x:Class="WpfLayoutUIOefenblad.Exercises.TabControl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfLayoutUIOefenblad.Exercises"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="800"
+      Title="TabControl">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#EEFDEF" BorderBrush="#6B6CB0" BorderThickness="1" Padding="12" Margin="20">
+            <!-- TODO: PAS HIERONDER DE XAML AAN -->
+			<TabControl SelectedIndex="0" >
+			   <TabItem Header="Account" Margin="0" Padding="10,5">
+				  	<Grid Margin="10">
+					   <Grid.ColumnDefinitions>
+						  <ColumnDefinition Width="Auto" />
+						  <ColumnDefinition Width="*" />
+					   </Grid.ColumnDefinitions>
+					   <Grid.RowDefinitions>
+						  <RowDefinition Height="Auto" />
+						  <RowDefinition Height="Auto" />
+						  <RowDefinition Height="Auto" />
+					   </Grid.RowDefinitions>
+						   <Label>E-mail:</Label>
+						   <TextBox Grid.Column="1" Margin="0,5,0,10" />
+						   <Label Grid.Row="1">Wachtwoord:</Label>
+						   <PasswordBox  Grid.Row="1" Grid.Column="1" Margin="0,5,0,10" />
+						   <Button Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" Content="Wijzigen" HorizontalAlignment="Right"/>
+					</Grid>
+			   </TabItem>
+			   <TabItem  Header="Voorkeuren" Margin="0" Padding="10,5">
+					<StackPanel Orientation="Vertical">
+						<CheckBox x:Name="chbNieuwsbrief" Content="Nieuwsbrief ontvangen" IsChecked="True" Margin="10" />
+						<CheckBox x:Name="chbDonkereModus" Content="Donkere modus" IsChecked="True" Margin="10" />
+						<CheckBox x:Name="chbMeldingen" Content="Meldingen toestaan" IsChecked="False" Margin="10" />
+					</StackPanel>
+			   </TabItem>
+			   <TabItem Header="Over" Margin="0" Padding="10,5">
+				  <TextBlock Padding="10" TextWrapping="Wrap">Dit is een voorbeeldapplicatie om TabControl te oefenen. Gebruiken tabs om instellingen <Run FontWeight="Bold"> logisch te groeperen </Run> en het scherm overzichtelijk te houden.
+					  <LineBreak/>
+					  <LineBreak/>
+					  Safi Harare, 2026.
+				  </TextBlock>
+			   </TabItem>
+			</TabControl>
+
+        </Border>
+    </Grid>
+</Page>

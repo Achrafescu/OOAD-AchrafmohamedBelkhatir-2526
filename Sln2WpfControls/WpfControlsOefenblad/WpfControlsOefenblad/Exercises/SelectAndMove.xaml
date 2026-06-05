@@ -1,0 +1,53 @@
+﻿<Page x:Class="WpfControlsOefenblad.Exercises.SelectAndMove"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SelectAndMove">
+
+    <Grid Background="#eeeeee">
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Titres -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Beschikbaar" 
+                       FontSize="16" FontWeight="Bold" Margin="10,0,10,10"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Geselecteerd" 
+                       FontSize="16" FontWeight="Bold" Margin="10,0,10,10"/>
+
+            <!-- ListBox Gauche -->
+            <ListBox x:Name="lbxAvailable" Grid.Row="1" Grid.Column="0" 
+         SelectionMode="Multiple" Margin="10" SelectionChanged="lbxAvailable_SelectionChanged">
+                <sys:String>C#</sys:String>
+                <sys:String>Java</sys:String>
+                <sys:String>JavaScript</sys:String>
+                <sys:String>Python</sys:String>
+                <sys:String>SQL</sys:String>
+            </ListBox>
+
+            <!-- Boutons -->
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                <Button x:Name="btnToSelected" Content="→" Width="60" Height="35" 
+                        Margin="10" IsEnabled="False" Click="btnToSelected_Click"/>
+                <Button x:Name="btnToAvailable" Content="←" Width="60" Height="35" 
+                        Margin="10" IsEnabled="False" Click="btnToAvailable_Click"/>
+            </StackPanel>
+
+            <!-- ListBox Droite -->
+            <ListBox x:Name="lbxSelected" Grid.Row="1" Grid.Column="2" SelectionMode="Multiple" Margin="10" SelectionChanged="lbxSelected_SelectionChanged"/>
+            
+        </Grid>
+    </Grid>
+</Page>

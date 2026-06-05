@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="helpdesk_tickets.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CLHelpdesk\CLHelpdesk.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="helpdesk_tickets.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,123 @@
+﻿<Window x:Class="WpfHelpdesk.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfHelpdesk"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <!-- Stijl voor knoppen -->
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Filter balk -->
+                <RowDefinition Height="*"/>
+                <!-- Inhoud -->
+                <RowDefinition Height="Auto"/>
+                <!-- Knoppenbalk -->
+            </Grid.RowDefinitions>
+
+            <!-- ═══ RIJ 0 : FILTER BALK ═══ -->
+            <GroupBox Grid.Row="0" Header="Filters" Margin="0,0,0,8">
+                <WrapPanel Orientation="Horizontal" Margin="4">
+
+                    <!-- Filter op status -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,16,0" VerticalAlignment="Center">
+                        <Label Content="Status:" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cmbFilterStatus" Width="120"
+                              SelectionChanged="Filter_Changed">
+                            <ComboBoxItem Content="Alle" IsSelected="True"/>
+                            <ComboBoxItem Content="Open"/>
+                            <ComboBoxItem Content="Afgesloten"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Filter op prioriteit -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,16,0" VerticalAlignment="Center">
+                        <Label Content="Prioriteit:" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cmbFilterPrioriteit" Width="120"
+                              SelectionChanged="Filter_Changed">
+                            <ComboBoxItem Content="Alle" IsSelected="True"/>
+                            <ComboBoxItem Content="Laag"/>
+                            <ComboBoxItem Content="Normaal"/>
+                            <ComboBoxItem Content="Hoog"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Filter op type -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,16,0" VerticalAlignment="Center">
+                        <Label Content="Type:" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cmbFilterType" Width="120"
+                              SelectionChanged="Filter_Changed">
+                            <ComboBoxItem Content="Alle" IsSelected="True"/>
+                            <ComboBoxItem Content="Hardware"/>
+                            <ComboBoxItem Content="Software"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Filter op melder -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Melder:" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cmbFilterMelder" Width="160"
+                              SelectionChanged="Filter_Changed"/>
+                    </StackPanel>
+
+                </WrapPanel>
+            </GroupBox>
+
+            <!-- ═══ RIJ 1 : LIJST + DETAILS ═══ -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <!-- Ticketlijst -->
+                    <ColumnDefinition Width="3*"/>
+                    <!-- Details -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Ticketlijst -->
+                <GroupBox Grid.Column="0" Header="Tickets" Margin="0,0,6,0">
+                    <ListBox x:Name="lstTickets"
+                         SelectionChanged="lstTickets_SelectionChanged"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </GroupBox>
+
+                <!-- Detail paneel -->
+                <GroupBox Grid.Column="1" Header="Detail" Margin="6,0,0,0">
+                    <TextBox x:Name="txtDetail"
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         FontFamily="Consolas"
+                         FontSize="13"
+                         Background="WhiteSmoke"
+                         Padding="8"/>
+                </GroupBox>
+            </Grid>
+
+            <!-- ═══ RIJ 2 : KNOPPENBALK ═══ -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,8,0,0">
+                <Button x:Name="btnToevoegen"
+                    Content="➕ Ticket toevoegen"
+                    Click="btnToevoegen_Click"/>
+                <Button x:Name="btnAfsluiten"
+                    Content="✔ Ticket afsluiten"
+                    IsEnabled="False"
+                    Click="btnAfsluiten_Click"/>
+            </StackPanel>
+
+
+        </Grid>
+    </Grid>
+</Window>

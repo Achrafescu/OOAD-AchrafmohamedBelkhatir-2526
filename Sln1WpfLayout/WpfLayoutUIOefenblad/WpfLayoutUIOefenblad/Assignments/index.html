@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>WPF Layout oefenblad</title>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400&display=swap">
+   <link rel="stylesheet" href="vendor/prism-default.css">
+   <link rel="stylesheet" href="vendor/prism-okaida.css">
+   <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="css/mods.css">
+</head>
+
+<body class="prism language-markup">
+
+   <header class="page-header" aria-label="Paginakop">
+      <h1>WPF Layout oefenblad</h1>
+      <p>
+         Dit is een oefenblad bij het hoofdstuk
+         <a href="https://rogiervdl.github.io/CS-course/08_layout.html">WPF Layout</a>.
+      </p>
+   </header>
+   <main>
+      <section class="intro box" aria-label="Inleiding">
+         <h2>Hoe los je dit oefenblad op?</h2>
+         <ol>
+            <li>Open dit oefenblad in <strong>Visual Studio 2026</strong>.</li>
+            <li>De oefeningen vind je in de map <em>Exercises</em>, de opdrachten vind je hieronder</li>
+            <li>Vul overal aan waar een <code><span class="comment">&lt;!-- TODO ... --&gt;</span></code> of <code><span class="comment">// TODO ...</span></code> commentaarblok vindt.</li>
+            <li>Run het oefenblad en controleer het resultaat.</li>
+         </ol>
+         <p>Overzicht van de oefeningen:</p>
+         <ol>
+            <li><a href="#ex1">Margin &amp; Padding</a></li>
+            <li><a href="#ex2">Alignment</a></li>
+            <li><a href="#ex3">Content Alignment</a></li>
+            <li><a href="#ex4">Grid</a></li>
+            <li><a href="#ex5">DockPanel</a></li>
+            <li><a href="#ex6">WrapPanel</a></li>
+            <li><a href="#ex7">StackPanel</a></li>
+            <li><a href="#ex8">ScrollViewer</a></li>
+            <li><a href="#ex9">TabControl</a></li>
+            <li><a href="#ex10">MessageBox</a></li>
+            <li><a href="#ex11">Notepad App</a></li>
+         </ol>
+      </section>
+
+      <!-- Oefening 1: Margin & Padding -->
+      <section class="exercise" id="ex1">
+         <h2>Margin &amp; Padding</h2>
+         <p class="goal">Doel: ruimte rondom en binnen controls instellen met <code>Margin</code> en <code>Padding</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>Zie ook de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#margin-en-padding" target="_blank">online cursus</a>.</p>
+            <p>
+               <code>Padding</code> heeft in XAML dezelfde betekenis als in CSS: ruimte <strong>binnen</strong> de control.
+               <br><code>Margin</code> betekent de ruimte die vrij blijft <strong>rondom</strong> de control, zoals in CSS, maar het soort panel bepaalt wat dit concreet betekent:
+            </p>
+            <ul>
+               <li>in een <code>&lt;Canvas&gt;</code> of <code>&lt;Grid&gt;</code>: afstand tot de randen (overlapping met siblings mogelijk)</li>
+               <li>in een <code>&lt;StackPanel&gt;</code> of <code>&lt;WrapPanel&gt;</code>: afstand tot de siblings (geen overlapping met siblings mogelijk)</li>
+            </ul>
+            <p>Let op: de volgorde van de diktes is anders dan in CSS! <code>Margin="35,48,10,20"</code> betekent "<strong>links, boven, rechts, onder</strong>" (CSS: boven, rechts, onder, links), <code>Margin="10,20"</code> betekent "<strong>horizontaal, verticaal</strong>" (CSS: omgekeerd).</p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <p>Gebruik verkorte notatie voor Margin/Padding waar mogelijk.</p>
+            <p>In de <code>Grid</code>:</p>
+            <ol>
+               <li>geef elke button een padding van 8px links/rechts en 3px boven/onder</li>
+               <li>positioneer de eerste button op 30px van links en 20px van boven</li>
+               <li>positioneer de tweede button op 200px van links en 50px van boven</li>
+            </ol>
+            <p>In de <code>StackPanel</code>:</p>
+            <ol start="4">
+               <li>geef de titel een margin van 20px rondom en 10px onder</li>
+               <li>geef de tekst een padding van 10px en een margin van 20px links/rechts</li>
+               <li>de opmerking onderaan staat op 40px van links, 20px van de tekst en 10px van onder</li>
+            </ol>
+            <p>Merk op hoe Margin in <code>Grid</code> positioneert, terwijl het in <code>StackPanel</code> witruimte creëert!</p>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/MarginPadding.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 2: Alignment -->
+      <section class="exercise" id="ex2">
+         <h2>Alignment</h2>
+         <p class="goal">Doel: controls positioneren met <code>HorizontalAlignment</code> en <code>VerticalAlignment</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>Zie ook de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#verticalalignment-en-horizontalalignment" target="_blank">online cursus</a>.</p>
+            <p>De attributen <code>HorizontalAlignment</code> en <code>VerticalAlignment</code> bepalen de positie van een control <strong>binnen de beschikbare ruimte</strong>. De waarden zijn:</p>
+            <ul>
+               <li><code>HorizontalAlignment</code>: <code>Left</code>, <code>Center</code>, <code>Right</code> en <code>Stretch</code> (de defaultwaarde).</li>
+               <li><code>VerticalAlignment</code>: <code>Top</code>, <code>Center</code>, <code>Bottom</code> en <code>Stretch</code> (de defaultwaarde).</li>
+            </ul>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <p>In de <code>&lt;Grid&gt;</code>:</p>
+            <ol>
+               <li>zet Button 1 rechtsonder, 20px van de rand</li>
+               <li>zet Button 2 gecentreerd, verticaal uitgerokken, 10px van de rand</li>
+               <li>geef de voetnoot een breedte van 200px, zet het linksonder, op 40px van links en 10px van onder</li>
+            </ol>
+            <p>In de <code>&lt;StackPanel&gt;</code> (alle items hebben een horizontale marge van 20px en bovenmarge van 10px):</p>
+            <ol start="4">
+               <li>tweede geneste panel: zet de items links</li>
+               <li>derde geneste panel: zet de items gecentreerd</li>
+               <li>vierde geneste panel: geef de items een breedte van 80px en zet ze rechts; verander de marge zodat ze 10px van rechts staan</li>
+            </ol>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/Alignment.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 3: Content Alignment -->
+      <section class="exercise" id="ex3">
+         <h2>Content Alignment</h2>
+         <p class="goal">Doel: de inhoud van controls uitlijnen met <code>HorizontalContentAlignment</code>, <code>VerticalContentAlignment</code> en <code>TextAlignment</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>Zie ook de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#verticalcontentalignment-en-horizontalcontentalignment" target="_blank">online cursus</a>.</p>
+            <p>
+               In een <code>&lt;Button&gt;</code> of <code>&lt;Label&gt;</code> bepalen <code>HorizontalContentAlignment</code> en <code>VerticalContentAlignment</code> de <strong>positie van de inhoud</strong>.
+               <br>In een <code>&lt;TextBlock&gt;</code> of <code>&lt;TextBox&gt;</code> bepaalt <code>TextAlignment</code> de <strong>tekstuitlijning</strong>.
+            </p>
+            <p>De waarden zijn:</p>
+            <ul>
+               <li><code>HorizontalContentAlignment</code>: <code>Left</code>, <code>Right</code> en <code>Center</code> (de defaultwaarde).</li>
+               <li><code>VerticalContentAlignment</code>: <code>Top</code>, <code>Center</code>, <code>Bottom</code> en <code>Stretch</code> (de defaultwaarde).</li>
+               <li><code>TextAlignment</code>: <code>Center</code>, <code>Right</code>, <code>Justify</code> en <code>Left</code> (de defaultwaarde).</li>
+            </ul>
+            <p>Deze attributen bepalen dus <em>niet</em> de positie van de control zelf, maar van de inhoud!</p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>aligneer en positioneer alle teksten volgens de screenshot</li>
+            </ol>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/ContentAlignment.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 4: Grid -->
+      <section class="exercise" id="ex4">
+         <h2>Grid</h2>
+         <p class="goal">Doel: controls rangschikken in een raster van rijen en kolommen met <code>Grid</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>Met <code>Grid</code> werk je met rijen en kolommen. Lees vooraf grondig de theorie in de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#grid" target="_blank">online cursus</a>. Ter herinnering de mogelijke waarden voor breedtes/hoogtes van kolommen/rijen:</p>
+            <ul>
+               <li>getalwaarde: vaste waarde in px</li>
+               <li><code>Auto</code>: content passend, niet meer dan nodig</li>
+               <li><code>*</code>: evenredig deel van resterende ruimte</li>
+               <li><code>1*, 2*...</code>: fracties van resterende ruimte</li>
+            </ul>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>definieer drie rijen: een vaste hoogte van 40px, resterende hoogte en passende hoogte</li>
+               <li>definieer twee kolommen: één kwart en drie kwart van de beschikbare breedte</li>
+               <li>positioneer alle controls in de <code>Grid</code> met <code>Grid.Row</code> en <code>Grid.Column</code></li>
+               <li>span header en footer over twee kolommen met <code>Grid.ColumnSpan</code></li>
+            </ol>
+            <p>Verwacht resultaat (run de oefening, verander de horizontale en verticale afmetingen van het venster, en kijk hoe de Grid reageert):</p>
+            <p><img src="img/Grid.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 5: DockPanel -->
+      <section class="exercise" id="ex5">
+         <h2>DockPanel</h2>
+         <p class="goal">Doel: panels tegen de randen plaatsen met <code>DockPanel</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               Met <code>DockPanel</code> stapel je panels tegen elkaar of in het midden. Lees vooraf grondig de theorie in de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#dockpanel" target="_blank">online cursus</a>.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>dock de header bovenaan</li>
+               <li>dock het menu links</li>
+               <li>dock de footer onderaan</li>
+               <li>de content moet alle resterende ruimte innemen</li>
+            </ol>
+            <p>Vergeet vooral niet de content als laatste te plaatsen en het vullend te maken met <code>LastChildFill="True"</code>.</p>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/DockPanel.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 6: WrapPanel -->
+      <section class="exercise" id="ex6">
+         <h2>WrapPanel</h2>
+         <p class="goal">Doel: controls over meerdere rijen of kolommen verdelen met <code>WrapPanel</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               Met <code>WrapPanel</code> stapel je controls tegen elkaar in rijen of kolommen, naargelang de waarde van <code>Orientation</code>. Lees vooraf grondig de theorie in de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#wrappanel" target="_blank">online cursus</a>.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>maak een <code>WrapPanel</code> met een maximale breedte van 400px (gebruik <code>MaxWidth</code>)</li>
+               <li>plaats daarin 10 afbeeldingen met <code>Image</code> en daarrond telkens een witte <code>Border</code> van 5px dik</li>
+               <li>voorzie 10px tussenruimte tussen de afbeeldingen</li>
+            </ol>
+            <p>Code voor één afbeelding:</p>
+            <pre class="code-block prism-okaida"><code>&lt;Border BorderBrush="..." BorderThickness="..." Margin="5"&gt;
+   &lt;Image Source="/Assignments/img/blazer01.JPG" Width="80"/&gt;
+&lt;/Border&gt;</code></pre>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/WrapPanel.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 7: StackPanel -->
+      <section class="exercise" id="ex7">
+         <h2>StackPanel</h2>
+         <p class="goal">Doel: controls op één lijn stapelen met <code>StackPanel</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               Met <code>StackPanel</code> stapel je controls naast elkaar in één rij of kolom, naargelang de waarde van <code>Orientation</code>. Lees vooraf grondig de theorie in de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#stackpanel" target="_blank">online cursus</a>.
+            </p>
+            <p>
+               Een <code>StackPanel</code> kan enkel stapelen, niet meer. Wil je meer controle over de ruimte die controls innemen, gebruik dan <code>Grid</code>.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>maak een <code>Grid</code> met twee kolommen: 140px vast en flexibel; de maximale breedte is 500px</li>
+               <li>plaats in elke cel een verticale <code>StackPanel</code>; de tweede heeft een linkermarge van 20px</li>
+               <li>plaats daarin telkens een <code>Label</code>, <code>TextBox</code> en <code>TextBlock</code></li>
+               <li>maak de <code>Label</code> op: 10px ondermarge, 5px padding links/rechts, vet</li>
+               <li>maak de <code>TextBox</code> op: de rand is <code>LightBlue</code>, de hoogte is 30px, en de tekst is verticaal gecentreerd</li>
+               <li>maak de <code>TextBlock</code> op: tekst is <code>#666</code>, schuin, 10px, rechts gealigneerd; de padding is 5px</li>
+            </ol>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/StackPanel.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 8: ScrollViewer -->
+      <section class="exercise" id="ex8">
+         <h2>ScrollViewer</h2>
+         <p class="goal">Doel: scrollbars toevoegen bij onvoldoende ruimte met <code>ScrollViewer</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               Wrap een control met <code>ScrollViewer</code> om scrollbars te tonen wanneer nodig. Lees vooraf de theorie in de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#scrollviewer" target="_blank">online cursus</a>.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>wrap de <code>StackPanel</code> in een <code>ScrollViewer</code>, zodat verticale scrollbars verschijnen indien nodig</li>
+            </ol>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/ScrollViewer.png" alt="" width="500">
+            </p>
+         </div>
+      </section>
+
+      <!-- Oefening 9: TabControl -->
+      <section class="exercise" id="ex9">
+         <h2>TabControl</h2>
+         <p class="goal">Doel: inhoud verdelen over tabbladen met <code>TabControl</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               Lees vooraf de theorie in de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#tabcontrol" target="_blank">online cursus</a>.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <ol>
+               <li>maak een <code>TabControl</code> met drie tabbladen naar onderstaande screenshots</li>
+               <li>eerste tabblad: gebruik een <code>Grid</code> met twee kolommen, meerdere rijen, allen breedte/hoogte <code>Auto</code> of <code>*</code>; gebruik <code>PasswordBox</code> voor het paswoord</li>
+               <li>tweede tabblad: gebruik <code>StackPanel</code>; de marge tussen checkboxes is 10px</li>
+               <li>derde tabblad: dit is gewoon een <code>TextBlock</code> met een <code>Run</code> voor het vette deel en twee keer <code>LineBreak</code> voor de open regel</li>
+            </ol>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/TabControl1.png" alt="" width="500"></p>
+            <p><img src="img/TabControl2.png" alt="" width="500"></p>
+            <p><img src="img/TabControl3.png" alt="" width="500"></p>
+         </div>
+      </section>
+
+      <!-- Oefening 10: MessageBox -->
+      <section class="exercise" id="ex10">
+         <h2>MessageBox</h2>
+         <p class="goal">Doel: een dialoogvenster tonen met <code>MessageBox</code>.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               Een <code>MessageBox</code> is een dialoogvenster; voor een kort overzicht zie de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#scrollviewer" target="_blank">online cursus</a>. Let op: gebruik ze zo weinig mogelijk in praktijk, want ze zijn <em>UI-blocking</em> (je kan niks anders doen tot je ze wegklikt).
+               Gebruik waar mogelijk liever een <code>TextBlock</code> voor de mededeling.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <p>Let op! Voor deze opgave zul je ook in de code-behind moeten werken.</p>
+            <ol>
+               <li>als op de knop geklikt wordt, toon je een <code>MessageBox</code> met de vraag te bevestigen</li>
+               <li>alleen als op "Ok" geklikt werd, toon je een tweede <code>MessageBox</code> met de bevestiging dat het opgeslagen is</li>
+            </ol>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/MessageBox1.png" alt="" width="200"></p>
+            <p><img src="img/MessageBox2.png" alt="" width="200"></p>
+         </div>
+      </section>
+
+      <!-- Oefening 11: Notepad App -->
+      <section class="exercise" id="ex11">
+         <h2>Notepad App</h2>
+         <p class="goal">Doel: een mini-teksteditor bouwen met menu, statusbar en tabs.</p>
+
+         <div class="info box">
+            <h3>Theorie</h3>
+            <p>
+               We integreren de laatste twee UI controls in één grotere opgave: de <a href="https://rogiervdl.github.io/CS-course/08_layout.html#statusbar" target="_blank">StatusBar</a> en het <a href="https://rogiervdl.github.io/CS-course/08_layout.html#menu" target="_blank">menu</a>.
+            </p>
+         </div>
+         <div class="assignment box">
+            <h3>Opdracht</h3>
+            <p>
+               Bouw een mini-teksteditor naar voorbeeld van onderstaande screenshots. De gebruikte controls zijn <code>DockPanel</code>, <code>Menu/MenuItem</code>, <code>StatusBar/StatusBarItem</code>, <code>TextBlock</code>, <code>TabControl/TabItem</code>, <code>ScrollViewer</code>, <code>TextBox</code>.
+            </p>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/NotepadApp1.png" alt="" width="500"></p>
+            <p><img src="img/NotepadApp2.png" alt="" width="200"></p>
+            <p><img src="img/NotepadApp3.png" alt="" width="200"></p>
+            <h3>Uitsmijter: About window</h3>
+            <p>
+               Maak nu een About Window dat opent via het menu-item <strong>Help, About</strong>. Alle uitleg over hoe je een dergelijk venster maakt, opent en weer sluit vind je weer in de cursus bij <a href="https://rogiervdl.github.io/CS-course/08_layout.html#window-control">Window control</a>.
+            </p>
+            <p>Verwacht resultaat:</p>
+            <p><img src="img/NotepadAppAbout.png" alt="" width="200"></p>
+         </div>
+      </section>
+
+   </main>
+
+   <footer class="page-footer" aria-label="Pagina-voetnoot">
+      <p>OOAD WPF Layout oefenblad.</p>
+   </footer>
+
+   <script src="vendor/prism.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>
